@@ -1,0 +1,14 @@
+#!/bin/bash
+
+RC="`cat rc.txt`"
+MAJOR_VERSION="`cat major_version.txt`"
+MINOR_VERSION="`cat minor_version.txt`"
+
+RC=$((RC + 1))
+#MAJOR_VERSION=$((MAJOR_VERSION + 1))
+#MINOR_VERSION=$((MINOR_VERSION + 1))
+VERSION="v$MAJOR_VERSION.$MINOR_VERSION-rc$RC"
+echo "$VERSION"
+echo "$RC" > rc.txt
+echo "$MINOR_VERSION" > minor_version.txt
+echo "$MAJOR_VERSION" > major_version.txt

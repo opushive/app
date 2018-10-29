@@ -1,0 +1,212 @@
+// http://ionicframework.com/docs/v2/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+ion-label {
+    font-weight: bold !important;
+}
+
+.select {
+    font-size: 12px !important;
+}
+
+h1 {
+    color: lightseagreen;
+}
+
+.white {
+    color: black;
+    font-weight: bolder;
+}
+
+ion-col {
+    color: black;
+    font-weight: bold;
+}
+
+ .card {
+     background-color: rgba(0,0,0,0) !important;
+ }
+
+ion-content {
+    background-image: url("../assets/img/bg_lb.png") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.item {
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    color: lightseagreen;
+    font-weight: bold;
+    text-transform: none;
+}
+
+ion-item {
+    text-align: center !important;
+}
+
+.tab-button-text {
+    color: black;
+    font-weight: bold;
+}
+
+ion-icon {
+    font-size: 24px;
+}
+
+.small {
+    font-size: 14px;
+}
+
+.title-x {
+    font-size: 1.2em;
+}
+
+.big {
+    font-size: 5em;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.bigger {
+    font-size: 5.5em;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: yellow;
+}
+
+.label {
+    color: white !important;
+    font-size: 13px;
+}
+
+.back-button {
+    color: white;
+}
+
+.button {
+    text-transform: none;
+    color: white;
+}
+
+.center {
+    padding-right: 20px;
+}
+
+.smallest {
+    font-size: 11px;
+}
+
+.very_small {
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.history {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.danger {
+    color: red;
+}
+
+.green {
+    color: lightseagreen;
+}
+
+.blue {
+    color: #387ef5;
+}
+
+.bitcoin_address {
+    font-size: 0.7em;
+    color: black;
+    font-weight: bold; //font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card {
+    box-shadow: 0 1px 2px rgba(0, 102, 0, 0.8);
+}
+
+.card-header {
+    color:white;   
+}
+
+.card-content {
+    color:white;   
+}
+
+ion-content {
+    background-color: white;
+}
+
+.tab-button-icon {
+    color: white !important;
+}
+
+.tab-button-text {
+    color: white !important;
+}
+
+.tabbar {
+    background-color: #222222 !important;
+}
+
+.toolbar-title {
+    color: white;
+    text-align: center;
+}
+
+.scroll-content {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+textarea.text-input {
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #eee;
+}
+
+.text-input {
+    background-color: #eee;
+    color: black; //border: inset;
+    font-size: 1em;
+    text-align: center;
+}
+
+.toolbar-background {
+    background-color: #000;
+}
+
+.overlay {
+    border-color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.alert-button {
+    text-transform: none !important;
+}
+
+.ion-button {
+    background-color: #F58634 !important;
+}
+
+p {
+    color: white !important;
+}

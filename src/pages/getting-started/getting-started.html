@@ -1,0 +1,58 @@
+<!--
+  Generated template for the GettingStarted page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{pageTitle}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+    <img src="assets/img/xendbit.png" alt="">
+    <ion-card>
+        <ion-card-content>
+            <div>
+                <p>You can send and recieve coins</p>
+                <p>You can buy and sell coins in the marketplace</p>
+                <p>You can send coins to another bank account</p>
+                <p>Requires you to enter KYC Information</p>
+            </div>
+            <button ion-button full round color="xend" icon-right (click)="openAdvancedWallet()">{{createAdvancedWalletText}}</button>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-card>
+        <ion-card-header>
+            Basic Wallet
+        </ion-card-header>
+        <ion-card-content>
+            <a href="#" (click)="toggleShowDetailsBasic()">{{detailsBasic}}</a>
+            <div *ngIf="showDetailsBasic">
+                <p>You can only send and recieve coins with this wallet</p>
+                <p>You can not buy or sell coins with this wallet</p>
+            </div>
+            <button ion-button full round color="fingerprint" icon-right (click)="openBasicWallet()">Create Basic Wallet</button>
+        </ion-card-content>
+    </ion-card> -->
+
+    <ion-card>
+        <ion-card-header>
+            Restore Wallet
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <p>{{recoverText}}</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-input type="email" placeholder="Email Address" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <button ion-button full round color="dark" (click)="restoreWallet()">{{restoreWalletText}}</button>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

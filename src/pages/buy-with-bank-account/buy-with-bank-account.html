@@ -1,0 +1,40 @@
+<!--
+  Generated template for the BuyWithBankAccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <button ion-button icon-left clear small (click)="loadRate()" item-left>
+        <ion-icon name="refresh-circle" color="dark"></ion-icon>
+        <span class="item">1 {{btcText}} = {{btcToNgn | number: '.3-3'}} {{currencyText}}</span>
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <p>Seller Account Information</p>
+      <p><b>Bank Name: </b> {{bankName}}</p>
+      <p><b>Account Number: </b> {{accountNumber}}</p>
+      <p><b>Amount (Naira): </b> {{totalAmount | number: '.3-3'}}</p>
+      <p></p>
+      <p>Reference Code: <b>{{referenceCode}}</b></p>
+      <p></p>
+      <p>You have 10 minutes to complete this trade, after 10 mins, the trade will be cancelled automatically</p>
+      <button [disabled]="disableButton" ion-button full round color="xend" (click)="confirmBankPayment();">Confirm Bank Payment</button>
+      <button [disabled]="disableButton" ion-button full round color="danger" (click)="cancelTrade();">Cancel Trade</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

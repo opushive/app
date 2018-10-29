@@ -1,0 +1,54 @@
+<!--
+  Generated template for the LandingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Portfolio Manager</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card class="header-card">
+    <ion-card-content class="header-content">
+      <p class="total-assets" (click)="reloadWallets()">Portfolio Value</p>
+      <p class="total-assets">{{totalAssets | currency: 'USD' : 'symbol' : '.2-2'}}</p>
+      <button ion-button small full round color="xend" (click)="openHome()">Buy/Sell</button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item class="bg" *ngFor="let wallet of loadedWallets" (click)="openHomePage(wallet)" detail-push>
+    <ion-avatar item-start>
+      <img src="https://xendbit.com/coins/{{wallet.ticker_symbol}}.png">    
+    </ion-avatar>              
+    <span class="big">{{wallet.symbol}} {{wallet.confirmedAccountBalance | number: '.2-4'}}</span><span class="big-color" item-end>[{{wallet.usdBalance | currency:'USD' : 'symbol' : '.2-2'}}]</span><br />
+    <span class="small">{{wallet.usdRate | currency:'USD' : 'symbol' : '.2-4'}} per {{wallet.text}}</span>
+  </ion-item>
+  <ion-item *ngIf="isEmpty();">
+    Loading....... Please wait.
+  </ion-item>
+  <!-- <ion-item class="header">
+    <ion-thumbnail item-start>
+      <img class='thumbnail' src="http://xendbit.com:8080/btc.png">
+    </ion-thumbnail>
+    <h1>Total Assets</h1>
+    <h2>{{totalAssets | currency: 'USD' : 'symbol' : '.2-4'}}</h2>
+    <button ion-button clear item-end (click)="openHome()">Load</button>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let wallet of loadedWallets; let i = index" text-wrap [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+      <ion-thumbnail item-start>
+        <img class='thumbnail' src="http://xendbit.com:8080/btc.png">
+      </ion-thumbnail>
+      <p class="line1">{{wallet.symbol}} {{wallet.confirmedAccountBalance | number: '.2-4'}} [{{wallet.usdBalance | currency:
+        'USD' : 'symbol' : '.2-4'}}]</p>
+      <p class="line2">{{wallet.usdRate | currency: 'USD' : 'symbol' : '.2-4'}} per {{wallet.text}}</p>
+      <button ion-button clear item-end (click)="openHomePage(wallet)">Load</button>
+    </ion-item>
+  </ion-list> -->
+</ion-content>

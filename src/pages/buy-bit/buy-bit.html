@@ -1,0 +1,55 @@
+<!--
+  Generated template for the BuyBitPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Buy {{currentWallet['text']}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-content>
+            <div>{{currentWallet['text']}} Rate:</div>
+            <button ion-button icon-left clear small (click)="loadRate()" item-left>
+                <ion-icon name="refresh-circle" color="dark"></ion-icon>
+                <span class="item">1 {{currentWallet['btcText']}} = {{btcToNgn | number: '.0-3'}} NGN</span>
+            </button>
+        </ion-card-content>
+    </ion-card>
+    <ion-item style="background-color: none">
+        <ion-label stacked>Select Pairs</ion-label>
+        <ion-select [(ngModel)]="currencyPair" placeholder="Click to select currency pairs" (ionChange)="pairSelected($event)">
+            <ion-option *ngFor="let currencyPair of currencyPairs" value="{{currencyPair}}">
+                {{currencyPair}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-grid style="background-color: none">
+        <ion-row class="rowgrid" *ngIf="showHeaders">
+            <ion-col col-4 class="colgrid">{{fromCoin}}</ion-col>
+            <ion-col col-4 class="colgrid">{{toCoin}}</ion-col>
+            <ion-col col-4 class="colgrid">Rate</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let seller of sellersPairs; let i = index" (click)=buyBit(seller) [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col col-4 class="colgrid">
+                {{seller.amountToSell | number: '.0-3'}}
+            </ion-col>
+            <ion-col col-4 class="colgrid">
+                {{seller.amountToRecieve | number: '.0-3'}}
+            </ion-col>
+            <ion-col col-4 class="colgrid">
+                {{seller.rate | number: '.0-5'}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card>
+        <ion-card-content class="nbnmnp">
+        </ion-card-content>
+    </ion-card>
+</ion-content>

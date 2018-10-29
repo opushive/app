@@ -1,0 +1,97 @@
+<!--
+  Generated template for the GettingStarted page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button icon-only menuToggle>
+                        <ion-icon name="menu"></ion-icon>
+                    </button>
+        </ion-buttons>
+        <ion-title>Upgrade Account</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="registerForm">
+        <ion-card>
+            <ion-card-header>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list no-lines>
+                    <ion-item>
+                        <ion-label stacked>Fullname</ion-label>
+                        <ion-input formControlName="fullName" type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label stacked>Email Address</ion-label>
+                        <ion-label stacked>{{emailAddress}}</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label stacked>Country of Residence</ion-label>
+                        <ion-select formControlName="country" placeholder="Click to select country">
+                            <ion-option value="Nigeria">Nigeria</ion-option>
+                            <ion-option value="Kenya">Kenya</ion-option>
+                            <ion-option value="Ghana">Ghana</ion-option>
+                        </ion-select>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label stacked>Phonenumber</ion-label>
+                        <ion-input type="number" formControlName="phoneNumber"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label stacked>Bank Account Number</ion-label>
+                        <ion-input type="number" formControlName="accountNumber"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                            <ion-label stacked>Bank Name</ion-label>
+                            <ion-select formControlName="bank" placeholder="Click to select bank">
+                                    <ion-option *ngFor="let bank of banks" value="{{bank.bankCode}}">{{bank.bankName}}</ion-option>
+                                </ion-select>
+                        </ion-item>                    
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+            <ion-card-header>KYC Information</ion-card-header>
+            <ion-card-content>
+                <ion-item class="small">ID Card Information</ion-item>
+                <ion-item>
+                    <ion-label stacked>Id Type</ion-label>
+                    <ion-select formControlName="idType" placeholder="Click to select ID Type">
+                        <ion-option *ngFor="let idType of idTypes" value="{{idType.text}}">{{idType.text}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Id Number</ion-label>
+                    <ion-input formControlName="idNumber" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <button item-center ion-button icon-only class="center" (click)="capturePassport()"><ion-icon name="camera"></ion-icon>Picture of ID</button>
+                </ion-item>
+                <ion-item>
+                    <ion-img width="100" height="100" src="{{idImagePath}}"></ion-img>
+            </ion-item>                
+
+            </ion-card-content>
+        </ion-card>
+    </form>
+
+    <ion-row>
+        <ion-col class="center">
+            <ion-buttons class="bordered">
+                <button ion-button full round color="xend" (click)="register();" icon-right>Upgrade Account<ion-icon name="contact"></ion-icon></button>
+            </ion-buttons>
+        </ion-col>
+    </ion-row>
+</ion-content>

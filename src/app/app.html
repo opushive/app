@@ -1,0 +1,23 @@
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+
+<ion-menu [content]="content" side="right">
+    <ion-content>
+        
+        <ion-item>
+                <ion-list>
+                        <ion-item> 
+                          <ion-avatar item-start>
+                            <img src="assets/img/avatar.png">
+                          </ion-avatar>
+                          <h2></h2>
+                        </ion-item>
+                      </ion-list>
+            </ion-item>
+    </ion-content>
+</ion-menu>
+
+
+
+
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

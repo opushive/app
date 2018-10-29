@@ -1,0 +1,16 @@
+page-home {
+    * {
+        color: white !important;
+    }
+    ion-card.card {
+        border-radius: 10px;
+    }
+    
+    .show {
+        display: block;
+    }
+    
+    .hide {
+        display: none;
+    }
+}

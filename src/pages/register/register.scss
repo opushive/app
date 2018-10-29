@@ -1,0 +1,68 @@
+page-register {
+    .background {
+        background-color: #3b5983;
+    }
+
+    .scroll-content {
+        align-content: center;
+     //   display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    a, p, .content {
+        color: #fff !important;
+    }
+
+    form {
+        color: #fff !important;
+    }
+
+    .list > .item-block:first-child {
+        border: medium none;
+    }
+
+    .item {
+        margin-bottom: 30px;
+        background: none;
+        border:none;
+    }
+
+    .text-input, {
+        color: black;
+        font-family: sans-serif;
+        padding: 5px; 
+        background-color: #fff;
+    }
+   
+    input::-moz-placeholder {
+        color: rgb(255, 72, 0) !important;
+    }
+
+    input:-moz-placeholder {
+        color: rgb(255, 72, 0) !important;
+    }
+
+    *::-webkit-input-placeholder{
+        color: rgb(255, 72, 0) !important;
+    }
+
+    *:-ms-input-placeholder {
+        color: rgb(255, 72, 0) !important;
+    }
+
+    *:-moz-placeholder {
+        color: rgb(255, 72, 0) !important;
+    }
+    
+    ion-icon {
+        padding-right: 20px;
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 0;
+    }
+
+}

@@ -1,0 +1,40 @@
+page-buy-bit {
+    .grid {
+        font-family: sans-serif;
+        text-align: center;
+    }    
+
+    .rowgrid {
+        border: thin solid gray;
+        border-width: 0.005em;
+        background-color: #F58634;
+        color: white;
+        font-weight: bolder;
+        font-size: 14px;        
+    }
+
+    .colgrid {
+        border: thin solid gray;        
+        border-width: 0.005em;
+        font-weight: normal;
+        font-size: smaller;
+    }
+
+    .scroll-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .odd {
+            background-color: #eeeeee;
+    }    
+
+    .even {
+          background-color: #cccccc;
+    } 
+    
+    .nbnmnp {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,18 @@
+page-terms {
+    .terms__heading {
+        font-weight: bold;
+    }
+
+    p {
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+
+    .scroller {
+        overflow-y: scroll;
+        height: 75%;
+        margin-top: 10px;            
+    }
+}

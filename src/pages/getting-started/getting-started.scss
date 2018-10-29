@@ -1,0 +1,47 @@
+page-getting-started {
+
+    .background {
+        background-color: #3b5983;
+    }
+
+  /*  .scroll-content {
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+*/
+
+    
+    span {
+        color: #000 !important;
+    }
+
+    a, p {
+        color: white !important;
+        border-bottom: 10px;
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 0;
+    }
+
+    P {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    span {
+        color: #fff !important;
+        font-style: italic;
+    }
+
+    .orange {
+        color: white;
+        font-size: 15px !important;
+        margin-bottom: 5px !important;
+
+    }
+}

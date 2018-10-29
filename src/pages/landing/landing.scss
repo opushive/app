@@ -1,0 +1,57 @@
+page-landing {
+    .thumbnail {
+        width: 40px !important;        
+        height: 40px !important;
+        border-width:5px;  
+        border-style:outset;
+        border-radius: 50px                        
+    }
+
+    .header-card {
+       width: 100%;
+       margin: 0px;
+       background: none !important;
+    }
+
+    .card-header {
+        text-align: center;
+        font-weight: 14px;
+    }
+
+    .header-content {
+        background-image: url('../assets/img/bg_small.png') !important;
+    }
+
+    .total-assets {     
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 1.5em;  
+        color: white; 
+        text-align: center;   
+        line-height: 1.2;  
+    }
+
+    .small {
+        font-size: 0.9em;
+        font-family: sans-serif;
+        color: white;
+    }
+
+    .big {
+        font-size: 1.2em;
+        font-family: sans-serif;
+        color: white;
+    }    
+
+    .big-color {
+        color: lightseagreen !important;
+        font-size: 1.2em;
+        font-family: sans-serif;
+    }
+
+    .item {
+        border-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
+        font-weight: bold;  
+    }
+}

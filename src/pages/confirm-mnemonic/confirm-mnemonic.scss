@@ -1,0 +1,22 @@
+page-confirm-mnemonic {
+    scroll-content {
+        display: flex;
+        flex-direction: column;
+    }
+    textarea {
+        height: 10em !important;
+    }
+    ion-grid {
+        padding: 0;
+        height: 100%;
+    }
+
+    ion-col {
+        color: white;
+    }
+
+    ion-card.big {
+        font-size: 2em !important;
+        line-height: 1.5 !important;
+    }
+}

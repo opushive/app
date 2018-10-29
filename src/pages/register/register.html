@@ -1,0 +1,109 @@
+<!--
+  Generated template for the GettingStarted page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button icon-only menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>{{pageTitle}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="registerForm">
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label stacked><sup>**</sup>Surname</ion-label>
+                <ion-input formControlName="surName" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked><sup>**</sup>Firstname</ion-label>
+                <ion-input formControlName="firstName" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Middlename (optional)</ion-label>
+                <ion-input formControlName="middleName" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked><sup>**</sup>{{emailAddressText}}</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="!isBasic">
+                <ion-label stacked><sup>**</sup>Country of Residence</ion-label>
+                <ion-select formControlName="country" placeholder="Click to select country">
+                    <ion-option value="Nigeria">Nigeria</ion-option>
+                    <ion-option value="Kenya">Kenya</ion-option>
+                    <ion-option value="Ghana">Ghana</ion-option>
+                    <ion-option value="Ghana">Others</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="!isBasic">
+                <ion-label stacked>{{phoneNumberText}} (optional)</ion-label>
+                <ion-input type="number" formControlName="phoneNumber"></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="!isBasic">
+                <ion-label stacked>Bank Account Number (optional)</ion-label>
+                <ion-input type="number" formControlName="accountNumber"></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="!isBasic">
+                <ion-label stacked>Bank Name (optional)</ion-label>
+                <ion-select formControlName="bank" placeholder="Click to select bank">
+                    <ion-option *ngFor="let bank of banks" value="{{bank.bankCode}}">{{bank.bankName}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label stacked>{{idTypeText}}</ion-label>
+                <ion-select formControlName="idType" placeholder="Click to select ID Type">
+                    <ion-option *ngFor="let idType of idTypes" value="{{idType.text}}">{{idType.text}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>{{idNumberText}}</ion-label>
+                <ion-input formControlName="idNumber" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <button item-center ion-button icon-only class="center" (click)="capturePassport()">
+                    <ion-icon name="camera"></ion-icon>Picture of ID
+                </button>
+                <p>{{idImagePath}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-list no-lines>
+            <ion-item>Become a Beneficiary</ion-item>
+            <p>
+                If you accept to be a beneficiary, Donors will be able to view all your information.
+            </p>
+            <ion-item>
+                <ion-label stacked>Make my information public</ion-label>
+                <ion-checkbox (click)="checkValue()" formControlName="isBeneficiary"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+    </form>
+
+    <ion-row>
+        <ion-col class="center">
+            <ion-buttons class="bordered">
+                <button ion-button full round color="xend" (click)="register();" icon-right>{{nextText}}
+                    <ion-icon name="contact"></ion-icon>
+                </button>
+            </ion-buttons>
+        </ion-col>
+    </ion-row>
+</ion-content>
