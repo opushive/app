@@ -1,3 +1,4 @@
+import { Console } from './../utils/console';
 import { mnemonicToSeed } from 'bip39';
 import { HDNode } from 'bitcoinjs-lib';
 import { Constants } from './../utils/constants';
@@ -35,7 +36,14 @@ export class LandingPage {
   ionViewDidLoad() {
     this.loadedWallets = [];
     this.totalAssets = 0;
-    this.wallets = Constants.properties['wallets'];
+    if (this.ls.getItem("exchangeType") === 'exchange') {
+      this.wallets = Constants.properties['wallets'];
+    } else if (this.ls.getItem("exchangeType") === 'equities') {
+      this.wallets = Constants.properties['equities'];
+    }
+    Constants.properties['wallets'] = this.wallets;
+
+    Console.log(this.wallets);
     this.count = 0;
     this.loadWallets();
   }
@@ -55,55 +63,71 @@ export class LandingPage {
     let wallet = this.wallets[this.count];
     if (wallet == undefined) {
       this.count = 0;
-      return;      
+      return;
     }
     let working_wallet = wallet['value'];
-    if (working_wallet.indexOf("ETH") >= 0) {
-      Constants.ethWallet(this.ls);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else if (working_wallet === 'XND') {
-      //this.showXendBalance = false;
-      Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else if (working_wallet === 'NXT') {
-      //this.showXendBalance = false;
-      Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else if(working_wallet === 'ARDR') {
-      Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else if(working_wallet === 'IGNIS') {
-      Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else if (wallet['currencyId'] !== undefined) {
-      Constants.tokenWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
-      let app = this;
-      setTimeout(function () {
-        app.refresh(wallet);
-      }, this.loadWalletDelay);
-    } else {
-      let network = Constants.NETWORKS[working_wallet];
-      let mnemonic = this.ls.getItem('mnemonic').trim();
+    if (this.ls.getItem("exchangeType") === 'exchange') {
+      if (working_wallet.indexOf("ETH") >= 0) {
+        Constants.ethWallet(this.ls);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (working_wallet === 'XND') {
+        //this.showXendBalance = false;
+        Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (working_wallet === 'NXT') {
+        //this.showXendBalance = false;
+        Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (working_wallet === 'ARDR') {
+        Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (working_wallet === 'IGNIS') {
+        Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (wallet['currencyId'] !== undefined) {
+        Constants.tokenWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else {
+        let network = Constants.NETWORKS[working_wallet];
+        let mnemonic = this.ls.getItem('mnemonic').trim();
 
-      var hd = HDNode.fromSeedBuffer(mnemonicToSeed(mnemonic), network).derivePath("m/0/0/0");
-      var key = working_wallet + 'Address';
-      this.ls.setItem(key, hd.getAddress());
-      this.refresh(wallet);
+        var hd = HDNode.fromSeedBuffer(mnemonicToSeed(mnemonic), network).derivePath("m/0/0/0");
+        var key = working_wallet + 'Address';
+        this.ls.setItem(key, hd.getAddress());
+        this.refresh(wallet);
+      }
+    } else if (this.ls.getItem("exchangeType") === 'equities') {
+      if (wallet['equityId'] !== undefined) {
+        Constants.tokenWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      } else if (wallet['currencyId'] !== undefined) {
+        Constants.tokenWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, working_wallet);
+        let app = this;
+        setTimeout(function () {
+          app.refresh(wallet);
+        }, this.loadWalletDelay);
+      }
     }
   }
 
@@ -119,6 +143,8 @@ export class LandingPage {
 
   getTransactions(wallet) {
     let fees = Constants.getWalletProperties(wallet['value']);
+    Console.log(wallet);
+    Console.log(fees);
 
     let key = wallet['value'] + "Address";
 
@@ -126,8 +152,11 @@ export class LandingPage {
       password: this.ls.getItem("password"),
       networkAddress: this.ls.getItem(key),
       emailAddress: this.ls.getItem("emailAddress"),
-      currencyId: fees.currencyId
+      currencyId: fees.currencyId,
+      equityId: fees.equityId
     };
+
+    Console.log(postData);
 
     this.http.post(Constants.GET_TX_URL, postData, Constants.getWalletHeader(wallet['value']))
       .map(res => res.json())
@@ -146,9 +175,6 @@ export class LandingPage {
   loadRate(wallet) {
     let working_wallet = wallet['value'];
     if (wallet.confirmedAccountBalance === 0 && wallet.value !== "XND") {
-      // wallet['usdRate'] = 0;
-      // wallet['usdBalance'] = 0;
-      // this.loadedWallets.push(wallet);
       this.count = this.count + 1;
       this.loadWallets();
     } else {

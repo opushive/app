@@ -17,7 +17,7 @@ export class CoinsSender {
         let password = ls.getItem('password');
 
         loading = Constants.showLoading(loading, loadingCtrl, Constants.properties['loading.dialog.text']);        
-        let mnemonicCode = Constants.normalizeMnemonicCode(ls);
+        let mnemonicCode = Constants.normalizeMnemonicCode(ls);        
 
         let val = Math.round(+amount * +fees.multiplier)        
         let xendFees = (amount * +fees.xendFees * +fees.multiplier);
@@ -37,14 +37,16 @@ export class CoinsSender {
             btcValue: val,
             passphrase: mnemonicCode,
             currencyId: fees.currencyId,
+            equityId: fees.equityId,
             xendFees: xendFees,
-            xendAddress: xendAddress
+            xendAddress: xendAddress,
+            networkAddress: ls.getItem("XNDAddress")
         };
 
         http.post(url, requestData, Constants.getWalletHeader(fees.btcText)).map(res => res.json()).subscribe(responseData => {
             loading.dismiss();
             if (responseData.result.broadcasted === true) {
-                Constants.showLongerToastMessage("Transaction Successful. The coins have been transfered.", toastCtrl);
+                Constants.showLongerToastMessage("Transaction Successful. The assets have been transfered.", toastCtrl);
                 successCall(data);
             }
 

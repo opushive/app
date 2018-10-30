@@ -1,3 +1,4 @@
+import { EquitiesExchangePage } from './../equities-exchange/equities-exchange';
 import { Mnemonics } from './../utils/mnemonics';
 import { Constants } from './../utils/constants';
 import { Component } from '@angular/core';
@@ -40,7 +41,7 @@ export class LoginPage {
     dontHaveAccountText: string;
     registerText: string;
     pageTitle: string;
-    ls: StorageService;    
+    ls: StorageService;
 
     emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
 
@@ -48,6 +49,7 @@ export class LoginPage {
         this.loginForm = formBuilder.group({
             password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
             email: new FormControl({ value: '', disabled: true }),
+            exchangeType: ['', Validators.compose([Validators.required])]
             //email: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(this.emailRegex), Validators.required])]
         });
 
@@ -59,6 +61,7 @@ export class LoginPage {
         let app = this;
 
         setTimeout(function () {
+            app.loginForm.controls.exchangeType.setValue("equities");
             app.loginForm.controls.email.setValue(app.ls.getItem("emailAddress"));
         }, Constants.WAIT_FOR_STORAGE_TO_BE_READY_DURATION);
     }
@@ -84,17 +87,20 @@ export class LoginPage {
 
         if (this.loginForm.valid) {
             isValid = true;
-        } else {
+        } else if (rf.password === '' || rf.password === undefined) {
             Constants.showLongToastMessage(Constants.properties['password.invalid.message'], this.toastCtrl);
+        } else if (rf.exchangeType === '' || rf.exchangeType === undefined) {
+            Constants.showLongToastMessage("Please select a wallet type", this.toastCtrl);
         }
 
         if (isValid) {
             this.loading = Constants.showLoading(this.loading, this.loadingCtrl, Constants.properties['loading.dialog.text']);
             let emailAddress = this.ls.getItem('emailAddress');
             let password = rf.password;
+            let exchangeType = rf.exchangeType;
             this.ls.setItem('emailAddress', emailAddress);
             this.ls.setItem('password', password);
-            this.loginOnServer(password, emailAddress);
+            this.loginOnServer(password, emailAddress, exchangeType);
         }
     }
 
@@ -133,7 +139,7 @@ export class LoginPage {
         }
     }
 
-    loginOnServer(password, emailAddress) {
+    loginOnServer(password, emailAddress, exchangeType) {
         this.ls.setItem('isGuest', false);
         this.ls.setItem('emailAddress', emailAddress);
         this.ls.setItem('password', password);
@@ -146,7 +152,7 @@ export class LoginPage {
             emailAddress: emailAddress,
             password: password,
             networkAddress: this.ls.getItem(key),
-            passphrase: mnemonicCode            
+            passphrase: mnemonicCode
         };
 
         this.http.post(url, requestData, Constants.getHeader())
@@ -161,6 +167,7 @@ export class LoginPage {
                     StorageService.ACCOUNT_TYPE = user.accountType;
                     StorageService.IS_BENEFICIARY = user.beneficiary;
                     ls.setItem("accountType", user.accountType);
+                    ls.setItem("exchangeType", exchangeType);
 
                     try {
                         ls.setItem("accountNumber", user.kyc.accountKYC.bankAccountNumber);
@@ -170,7 +177,11 @@ export class LoginPage {
                     }
                     if (walletType === 'trader') {
                         this.postKYCInfoToBlockchain(password, emailAddress);
-                        this.navCtrl.push(TabsPage);
+                        if (exchangeType === 'exchange') {
+                            this.navCtrl.push(TabsPage);
+                        } else if (exchangeType === 'equities') {
+                            this.navCtrl.push(EquitiesExchangePage);
+                        }
                     } else {
                         Console.log('We are coming');
                     }
@@ -219,7 +230,7 @@ export class LoginPage {
         this.dontHaveAccountText = Constants.properties['dont.have.account'];
         this.pageTitle = Constants.properties['login.page.title'];
         this.forgotPasswordText = Constants.properties['forgot.password'];
-        this.getHelpText = Constants.properties['get.help'];        
+        this.getHelpText = Constants.properties['get.help'];
     }
 
     deployContract() {

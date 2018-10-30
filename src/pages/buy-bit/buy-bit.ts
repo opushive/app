@@ -223,13 +223,15 @@ export class BuyBitPage {
     checkCoinBalance(coin, seller) {
         this.loading = Constants.showLoading(this.loading, this.loadingCtrl, "Checking your current balance...");
         let amountToSend = +seller.amountToRecieve;
+
         let fees = Constants.getWalletProperties(coin);
 
         let postData = {
             password: this.ls.getItem("password"),
             networkAddress: this.buyerOtherAddress,
             emailAddress: this.ls.getItem("emailAddress"),
-            currencyId: fees.currencyId
+            currencyId: fees.currencyId,
+            equityId: fees.equityId
         };
 
         this.http.post(Constants.GET_TX_URL, postData, Constants.getWalletHeader(coin))

@@ -50,10 +50,10 @@
             <button color="xend" ion-button icon-left full round small (click)="switchWallet();">
                 Switch Wallet
             </button>
-            <button *ngIf="isAdvanced" color="fingerprint" ion-button full small round (click)="exchange();" icon-right>Crypto Sell-Order
+            <button *ngIf="!isEquities" color="fingerprint" ion-button full small round (click)="exchange();" icon-right>{{cryptoSellOrderText}}
                 <ion-icon name="podium"></ion-icon>
             </button>
-            <button *ngIf="isAdvanced" color="primary" ion-button full small round (click)="sellBit();" icon-right>Fiat Sell-Order
+            <button *ngIf="isAdvanced" color="primary" ion-button full small round (click)="sellBit();" icon-right>{{fiatSellOrderText}}
                 <ion-icon name="card"></ion-icon>
             </button>
             <button *ngIf="isAdvanced" ion-button full round small color="dark" (click)="sellOrders();" icon-right>View My Orders

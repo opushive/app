@@ -7,11 +7,11 @@ import { LocalProps } from "./localprops";
 import { CoinsSender } from "./coinssender";
 
 export class Constants {    
-    //static TOMCAT_URL = "http://localhost:8080";
+    static TOMCAT_URL = "http://localhost:8080";
     static APP_VERSION = "v3.2-rc15"
     static ENABLE_GUEST = true;
     static GETH_PROXY = "http://rinkeby.xendbit.com:8546";
-    static TOMCAT_URL = "https://lb.xendbit.com";
+    //static TOMCAT_URL = "https://lb.xendbit.com";
     static RPC_PROXY = Constants.TOMCAT_URL + "/chain/x/rpc";    
     static XEND_BASE_URL = Constants.TOMCAT_URL + "/api/";
     static IMAGER_URL = Constants.TOMCAT_URL + "/imager/x/api/";
@@ -502,6 +502,8 @@ export class Constants {
                 CoinsSender.sendCoinsXnd(data, Constants.sendCoinsToBuyerSuccess, Constants.sendCoinsToBuyerError, fees);
             } else if (fees.currencyId !== undefined) {
                 CoinsSender.sendCoinsXnd(data, Constants.sendCoinsToBuyerSuccess, Constants.sendCoinsToBuyerError, fees);
+            } else if (fees.equityId !== undefined) {
+                CoinsSender.sendCoinsXnd(data, Constants.sendCoinsToBuyerSuccess, Constants.sendCoinsToBuyerError, fees);
             } else {
                 let network = Constants.NETWORKS[coin];
                 CoinsSender.sendCoinsBtc(data, Constants.sendCoinsToBuyerSuccess, Constants.sendCoinsToBuyerError, coin, fromAddress, network);
@@ -565,6 +567,7 @@ export class Constants {
         let url = "";
         let contract = "";
         let currencyId = "";
+        let equityId = "";
 
         let wallets = Constants.properties['wallets'];
         for (let w in wallets) {
@@ -581,6 +584,7 @@ export class Constants {
                 url = wallet['url'];
                 contract = wallet['contract'];
                 currencyId = wallet['currencyId'];
+                equityId = wallet['equityId'];
             }
         }
 
@@ -595,7 +599,8 @@ export class Constants {
             "multiplier": multiplier,
             "contract": contract,
             "url": url,
-            "currencyId": currencyId
+            "currencyId": currencyId,
+            "equityId": equityId
         };
         return fees;
     }

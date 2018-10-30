@@ -127,6 +127,8 @@ export class DonatePage {
                 CoinsSender.sendCoinsXnd(data, this.sendCoinsSuccess, this.sendCoinsError, fees);            
             } else if (fees.currencyId !== undefined) {
                 CoinsSender.sendCoinsXnd(data, this.sendCoinsSuccess, this.sendCoinsError, fees);
+            } else if (fees.equityId !== undefined) {
+                CoinsSender.sendCoinsXnd(data, this.sendCoinsSuccess, this.sendCoinsError, fees);        
             } else {
                 let key = Constants.WORKING_WALLET + "Address";
                 CoinsSender.sendCoinsBtc(data, this.sendCoinsSuccess, this.sendCoinsError, Constants.WORKING_WALLET, this.ls.getItem(key), Constants.NETWORK);

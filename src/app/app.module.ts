@@ -1,3 +1,4 @@
+import { EquitiesExchangePage } from './../pages/equities-exchange/equities-exchange';
 import { TabsPage } from './../pages/tabs/tabs';
 import { MyExceptionHandler } from './../pages/utils/exceptionhandler';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -10,10 +11,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
+
 @NgModule({
   declarations: [             
     MyApp,
     TabsPage,
+    EquitiesExchangePage,
     StartPage
   ],
   imports: [
@@ -30,6 +33,7 @@ import { HttpModule } from '@angular/http';
   entryComponents: [         
     MyApp,
     TabsPage,
+    EquitiesExchangePage,
     StartPage    
   ],
   providers: [

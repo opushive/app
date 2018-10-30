@@ -56,7 +56,11 @@ export class HomePage {
     emailAddress: string;
     showXendBalance = true;
     isAdvanced = false;
+    isEquities = false;
     isBeneficiary = false;
+
+    cryptoSellOrderText = 'Crypto Sell-Order';
+    fiatSellOrderText = 'Fiat Sell-Order';
 
     constructor(public storage: Storage, public modalCtrl: ModalController, public alertCtrl: AlertController, public platform: Platform, public loadingCtrl: LoadingController, public navCtrl: NavController, public http: Http, public toastCtrl: ToastController, public localNotifications: LocalNotifications, public actionSheetCtrl: ActionSheetController) {
         this.clipboard = new Clipboard();
@@ -111,7 +115,7 @@ export class HomePage {
     }
 
     switchWallet() {
-        this.navCtrl.push('SwitchWalletPage', {'home': this});
+        this.navCtrl.push('SwitchWalletPage', { 'home': this });
     }
 
     copyBitcoinAddress() {
@@ -159,6 +163,13 @@ export class HomePage {
 
     ionViewDidLoad() {
         Console.log('ionViewDidLoad HomePage');
+        if (this.ls.getItem("exchangeType") === 'exchange') {
+            this.cryptoSellOrderText = 'Cryto Sell Order';
+            this.fiatSellOrderText = 'Fiat Sell Order'
+        } else {
+            this.cryptoSellOrderText = 'Exchange Assets';
+            this.fiatSellOrderText = 'Sell Equities'
+        }
         let app = this;
         setTimeout(function () {
             //Do all wallets.
@@ -176,7 +187,7 @@ export class HomePage {
                 } else if (coin === "ARDR") {
                     Constants.xndWallet(app.ls, app.loading, app.loadingCtrl, app.http, app.toastCtrl, coin);
                 } else if (coin === "IGNIS") {
-                    Constants.xndWallet(app.ls, app.loading, app.loadingCtrl, app.http, app.toastCtrl, coin);                    
+                    Constants.xndWallet(app.ls, app.loading, app.loadingCtrl, app.http, app.toastCtrl, coin);
                 } else if (wallet['currencyId'] !== undefined) {
                     Constants.tokenWallet(app.ls, app.loading, app.loadingCtrl, app.http, app.toastCtrl, coin);
                 } else {
@@ -195,9 +206,19 @@ export class HomePage {
     ionViewDidEnter() {
         Console.log('ionViewDidEnter HomePage');
         this.isAdvanced = false;
+        this.isEquities = this.ls.getItem("exchangeType") !== 'exchange';
+        
         this.refresh(false);
         if (StorageService.ACCOUNT_TYPE === "ADVANCED") {
             this.isAdvanced = true;
+        }
+
+        if (this.ls.getItem("exchangeType") === 'exchange') {
+            this.cryptoSellOrderText = 'Cryto Sell Order';
+            this.fiatSellOrderText = 'Fiat Sell Order'
+        } else {
+            this.cryptoSellOrderText = 'Exchange Assets';
+            this.fiatSellOrderText = 'Sell Equities'
         }
     }
 
@@ -218,7 +239,8 @@ export class HomePage {
             password: this.ls.getItem("password"),
             networkAddress: this.ls.getItem(key),
             emailAddress: this.ls.getItem("emailAddress"),
-            currencyId: fees.currencyId
+            currencyId: fees.currencyId,
+            equityId: fees.equityId
         };
 
         Console.log(postData);
