@@ -7,11 +7,11 @@ import { LocalProps } from "./localprops";
 import { CoinsSender } from "./coinssender";
 
 export class Constants {    
-    static TOMCAT_URL = "http://localhost:8080";
+    //static TOMCAT_URL = "http://localhost:8080";
     static APP_VERSION = "v3.2-rc15"
     static ENABLE_GUEST = true;
     static GETH_PROXY = "http://rinkeby.xendbit.com:8546";
-    //static TOMCAT_URL = "https://lb.xendbit.com";
+    static TOMCAT_URL = "https://lb.xendbit.com";
     static RPC_PROXY = Constants.TOMCAT_URL + "/chain/x/rpc";    
     static XEND_BASE_URL = Constants.TOMCAT_URL + "/api/";
     static IMAGER_URL = Constants.TOMCAT_URL + "/imager/x/api/";
