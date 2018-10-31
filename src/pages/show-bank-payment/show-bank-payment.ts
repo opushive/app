@@ -40,6 +40,7 @@ export class ShowBankPaymentPage {
   loading: Loading;
   sellOrder: any;
   disableButton = false;
+  brokerAccount = "";
 
   constructor(public alertCtrl: AlertController, public storage: Storage, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public http: Http, public toastCtrl: ToastController) {
     this.pageTitle = Constants.properties['buy.bit.with.cc.page.title'];
@@ -49,6 +50,7 @@ export class ShowBankPaymentPage {
     this.banks = Constants.properties['banks'];
 
     this.sellOrder = this.navParams.get('sellOrder');
+    Console.log(this.sellOrder);
 
     let data = this.sellOrder;
     let sellerToAddress = data['sellerToAddress'];
@@ -66,6 +68,7 @@ export class ShowBankPaymentPage {
     this.referenceCode = data['trxId'];
     this.buyerAddress = data['buyerFromAddress'];
     this.amountToSend = data['amountToSell'];
+    this.brokerAccount = data['brokerAccount'];
 
     this.ls = new StorageService(this.storage);
     this.loading = Constants.showLoading(this.loading, this.loadingCtrl, Constants.properties['loading.dialog.text']);
@@ -115,13 +118,18 @@ export class ShowBankPaymentPage {
     data['toastCtrl'] = this.toastCtrl;
     data['http'] = this.http;
     data['page'] = this;
-    data['trxId'] = this.sellOrder
+    data['trxId'] = this.sellOrder;
+    data['brokerAccount'] = this.brokerAccount;
   
     let fees = Constants.getCurrentWalletProperties();
     
     if (Constants.WORKING_WALLET.indexOf('ETH') >= 0) {
       CoinsSender.sendCoinsEth(data, this.successCall, this.errorCall, Constants.WORKING_WALLET);
-    } else if (Constants.WORKING_WALLET === 'XND' || Constants.WORKING_WALLET === "NXT" || Constants.WORKING_WALLET === "ARDR" || Constants.WORKING_WALLET === "IGNIS" || Constants.WORKING_WALLET === "NGNT" ) {
+    } else if (Constants.WORKING_WALLET === 'XND' || Constants.WORKING_WALLET === "NXT" || Constants.WORKING_WALLET === "ARDR" || Constants.WORKING_WALLET === "IGNIS") {
+      CoinsSender.sendCoinsXnd(data, this.successCall, this.errorCall, fees);
+    } else if (fees.currencyId !== undefined) {
+      CoinsSender.sendCoinsXnd(data, this.successCall, this.errorCall, fees);
+    } else if (fees.equityId !== undefined) {
       CoinsSender.sendCoinsXnd(data, this.successCall, this.errorCall, fees);
     } else {
       let key = Constants.WORKING_WALLET + "Address";

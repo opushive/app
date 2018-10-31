@@ -326,8 +326,11 @@ export class HomePage {
         if (this.ls.getItem("bankCode") === "000" || this.ls.getItem('bankCode') === undefined) {
             Constants.showAlert(this.alertCtrl, "Feature Unavailable", "This feature is not available because you didn't provide bank details during registration.");
             return;
+        } else if (this.ls.getItem("exchangeType") === 'exchange') {
+            this.navCtrl.push('SellBitPage', { 'isOwner': true });
+        } else {
+            this.navCtrl.push('SellEquityPage', { 'isOwner': true });
         }
-        this.navCtrl.push('SellBitPage', { 'isOwner': true });
     }
 
     sellOrders() {

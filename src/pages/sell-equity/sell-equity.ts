@@ -1,9 +1,9 @@
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Console} from './../utils/console';
+import {Console} from '../utils/console';
 import {Storage} from '@ionic/storage';
-import {StorageService} from './../utils/storageservice';
-import {Constants} from './../utils/constants';
+import {StorageService} from '../utils/storageservice';
+import {Constants} from '../utils/constants';
 import {Component} from '@angular/core';
 import { NavController, NavParams, Loading, LoadingController, ToastController, ActionSheetController, AlertController, IonicPage } from 'ionic-angular';
 import 'rxjs/add/operator/map';
@@ -18,10 +18,10 @@ import {Http} from '@angular/http';
 
 @IonicPage()
 @Component({
-    selector: 'page-sell-bit',
-    templateUrl: 'sell-bit.html',
+    selector: 'page-sell-equity',
+    templateUrl: 'sell-equity.html',
 })
-export class SellBitPage {
+export class SellEquityPage {
 
     networkAddress: string;
     confirmedAccountBalance: string;
@@ -80,7 +80,8 @@ export class SellBitPage {
             beneficiaryAccountNumber: ['', Validators.required],
             beneficiaryBank: ['', Validators.required],
             password: ['', Validators.required],
-            acceptedPaymentMethods: ['', Validators.required]
+            acceptedPaymentMethods: ['', Validators.required],
+            brokerAccount: ['', Validators.required]
         });
 
         this.ls = new StorageService(this.storage);
@@ -132,6 +133,8 @@ export class SellBitPage {
             Constants.showPersistentToastMessage(Constants.properties['insufficient.bitcoin.balance'], this.toastCtrl);
         } else if (sb.acceptedPaymentMethods === "") {
             Constants.showPersistentToastMessage("Please specify accepted payment methods", this.toastCtrl);
+        } else if(sb.brokerAccount === "") {
+            Constants.showPersistentToastMessage("Please specify a broker", this.toastCtrl);        
         } else {
             isValid = true;
         }
@@ -204,6 +207,7 @@ export class SellBitPage {
         let beneficiaryBank = this.beneficiaryData.beneficiaryBank;
         let password = sb.password;
         let amountToRecieve = +sb.amountToRecieve;
+        let brokerAccount = sb.brokerAccount;
 
         let rate = +sb.pricePerBTC;
 
@@ -227,7 +231,8 @@ export class SellBitPage {
             password: password,
             networkAddress: sellerFromAddress,
             currencyId: fees.currencyId,
-            equityId: fees.equityId
+            equityId: fees.equityId,
+            brokerAccount: brokerAccount
         }
 
         //this is wrong

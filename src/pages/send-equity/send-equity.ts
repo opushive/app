@@ -1,6 +1,6 @@
-import { CoinsSender } from './../utils/coinssender';
-import { Constants } from './../utils/constants';
-import { Console } from './../utils/console';
+import { CoinsSender } from '../utils/coinssender';
+import { Constants } from '../utils/constants';
+import { Console } from '../utils/console';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, Loading, LoadingController, AlertController, IonicPage } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -19,10 +19,10 @@ import { StorageService } from '../utils/storageservice';
 */
 @IonicPage()
 @Component({
-  selector: 'page-send-bit',
-  templateUrl: 'send-bit.html'
+  selector: 'page-send-equity',
+  templateUrl: 'send-equity.html'
 })
-export class SendBitPage {
+export class SendEquityPage {
 
   sendBitForm;
   ls;
@@ -47,6 +47,7 @@ export class SendBitPage {
     this.sendBitForm = formBuilder.group({
       amount: ['', Validators.compose([Validators.required])],
       networkAddress: ['', Validators.required],
+      brokerAccount: ['', Validators.required],
       password: ['', Validators.required]
     });
 
@@ -127,6 +128,7 @@ export class SendBitPage {
     let balance = +this.ls.getItem(Constants.WORKING_WALLET + "confirmedAccountBalance");
     let password = bv.password;
     let toBitcoinAddress = bv.networkAddress;
+    let brokerAccount = bv.brokerAccount;
 
     let fees = Constants.getCurrentWalletProperties();
 
@@ -141,6 +143,8 @@ export class SendBitPage {
       Constants.showPersistentToastMessage(Constants.properties['insufficient.bitcoin.balance'], this.toastCtrl);
     } else if (toBitcoinAddress === '') {
       Constants.showPersistentToastMessage(invalidAddressMessage, this.toastCtrl);
+    } else if (brokerAccount === '') {
+      Constants.showPersistentToastMessage("Please enter a broker address", this.toastCtrl);
     } else if (password !== this.ls.getItem("password")) {
       Constants.showLongToastMessage(Constants.properties['password.invalid.message'], this.toastCtrl);
     } else if (this.sendBitForm.valid) {
@@ -157,6 +161,7 @@ export class SendBitPage {
       data['toastCtrl'] = this.toastCtrl;
       data['http'] = this.http;
       data['sendBitPage'] = this;
+      data['brokerAccount'] = brokerAccount;
 
       this.disableButton = true;
       Console.log(fees);
@@ -179,7 +184,7 @@ export class SendBitPage {
 
   sendCoinsSuccess(data) {
     Console.log("Success Code Called");
-    let me: SendBitPage = data['sendBitPage'];
+    let me: SendEquityPage = data['sendBitPage'];
     console.dir(data);
     console.dir(me);
     me.sendBitForm.controls.amount.setValue("");
@@ -188,7 +193,7 @@ export class SendBitPage {
   }
 
   sendCoinsError(data) {
-    let me: SendBitPage = data['sendBitPage'];
+    let me: SendEquityPage = data['sendBitPage'];
     me.disableButton = false;
     Constants.showLongerToastMessage('Error Sending Coin', me.toastCtrl);
     Console.log("Errored Out");

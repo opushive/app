@@ -19,7 +19,7 @@ export class EquitiesExchangePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = 'LandingPage';
-  tab2Root: any = 'SendBitPage';
+  tab2Root: any = 'SendEquityPage';
   tab3Root: any = 'SettingsPage';
 
  isAdvanced: boolean = false;

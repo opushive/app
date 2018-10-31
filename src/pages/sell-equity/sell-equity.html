@@ -1,0 +1,81 @@
+<!--
+  Generated template for the SellBitPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title *ngIf="!isOwner">XendCash</ion-title>
+        <ion-title *ngIf="isOwner">Fiat Sell-Order</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-content>
+            <button ion-button icon-left clear small (click)="loadRate()" item-left>
+                <ion-icon name="refresh-circle" color="dark"></ion-icon>
+                <span class="item">1 {{btcText}} = {{btcToNgn | number: '.3-3'}} NGN</span>
+            </button>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+        <ion-col>
+            <form [formGroup]="sellForm">
+                <ion-item>
+                    <ion-label stacked>{{priceText}}</ion-label>
+                    <ion-input type="number" formControlName="pricePerBTC" (input)="calculateHowMuchToRecieve();"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>{{numberOfBTCText}}</ion-label>
+                    <ion-input type="number" formControlName="numberOfBTC" (input)="calculateHowMuchToRecieve();"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>You will get (NGN)</ion-label>
+                    <ion-input readonly type="number" formControlName="amountToRecieve"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Broker Address</ion-label>
+                    <ion-input type="text" formControlName="brokerAccount"></ion-input>
+                </ion-item>                
+                <ion-item *ngIf="!isOwner">
+                    <ion-label stacked>{{beneficiaryAccountNumberText}}</ion-label>
+                    <ion-input type="number" formControlName="beneficiaryAccountNumber"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!isOwner">
+                    <ion-label stacked>{{beneficiaryBankText}}</ion-label>
+                    <ion-select formControlName="beneficiaryBank" placeholder="Click to select bank">
+                        <ion-option *ngFor="let bank of banks" value="{{bank.bankCode}}">{{bank.bankName}}</ion-option>
+                    </ion-select>
+                </ion-item>                
+                <ion-item>
+                    <ion-label stacked>Accepted Payment Method</ion-label>
+                    <ion-select formControlName="acceptedPaymentMethods" placeholder="Click to select payment methods">
+                        <ion-option *ngFor="let paymentMethod of paymentMethods" value="{{paymentMethod.value}}">
+                            {{paymentMethod.text}}
+                        </ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>{{passwordText}}</ion-label>
+                    <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+            </form>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="center" col-9>
+            <button ion-button round full color="xend" (click)="sellBit();" icon-right>Place Sell Order<ion-icon name="trending-up"></ion-icon></button>
+        </ion-col>
+        <ion-col col-3>
+            <button ion-button round color="fingerprint" (click)="sellBitFingerprint();" icon-only>
+                <ion-icon name="finger-print"></ion-icon>
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-content>

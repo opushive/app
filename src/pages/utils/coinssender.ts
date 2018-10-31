@@ -15,6 +15,7 @@ export class CoinsSender {
         let toastCtrl = data['toastCtrl'];
         let http = data['http'];
         let password = ls.getItem('password');
+        let brokerAccount = data['brokerAccount'];
 
         loading = Constants.showLoading(loading, loadingCtrl, Constants.properties['loading.dialog.text']);        
         let mnemonicCode = Constants.normalizeMnemonicCode(ls);        
@@ -40,6 +41,7 @@ export class CoinsSender {
             equityId: fees.equityId,
             xendFees: xendFees,
             xendAddress: xendAddress,
+            brokerAccount: brokerAccount,
             networkAddress: ls.getItem("XNDAddress")
         };
 
