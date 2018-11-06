@@ -4,7 +4,7 @@ import * as path from 'path';
 
 const serverAddress = 'http://localhost:4723/wd/hub';
 const testFilePAtterns: Array<string> = [
-  '../tests/**/*/*.e2e-spec.ts'
+  'specs/**/*.e2e-spec.ts'
 ];
 const iPhoneXCapability = {
   browserName: '',

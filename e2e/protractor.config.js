@@ -4,7 +4,7 @@ var tsNode = require("ts-node");
 var path = require("path");
 var serverAddress = 'http://localhost:4723/wd/hub';
 var testFilePAtterns = [
-    '../tests/**/*/*.e2e-spec.ts'
+    'specs/**/*.e2e-spec.ts'
 ];
 var iPhoneXCapability = {
     browserName: '',
