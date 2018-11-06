@@ -6,6 +6,7 @@ var serverAddress = 'http://localhost:4723/wd/hub';
 var testFilePAtterns = [
     'specs/**/*.e2e-spec.ts'
 ];
+var packageName = "com.xendbit";
 var iPhoneXCapability = {
     browserName: '',
     autoWebview: true,
@@ -31,6 +32,10 @@ var androidPixel2XLCapability = {
     'app-activity': 'MainActivity',
     autoAcceptAlerts: 'true',
     autoGrantPermissions: 'true',
+    androidDeviceSocket: packageName + "_devtools_remote",
+    chromeOptions: {
+        androidDeviceSocket: packageName + "_devtools_remote"
+    },
     newCommandTimeout: 300000
 };
 exports.config = {
