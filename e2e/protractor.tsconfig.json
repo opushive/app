@@ -4,6 +4,6 @@
       "**/*.config.ts"
     ],
     "exclude": [
-      "./tests"
+      "./test/"
     ]
   }

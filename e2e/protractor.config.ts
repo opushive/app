@@ -4,13 +4,13 @@ import * as path from 'path';
 
 const serverAddress = 'http://localhost:4723/wd/hub';
 const testFilePAtterns: Array<string> = [
-  '**/*/*.e2e-spec.ts'
+  '../tests/**/*/*.e2e-spec.ts'
 ];
 const iPhoneXCapability = {
   browserName: '',
   autoWebview: true,
   autoWebviewTimeout: 20000,
-  app: path.resolve(__dirname, 'platforms/ios/build/emulator/superApp.app'),
+  app: path.resolve(__dirname, '../platforms/ios/build/emulator/superApp.app'),
   version: '11.4',
   platform: 'iOS',
   deviceName: 'iPhone X',
@@ -25,7 +25,8 @@ const androidPixel2XLCapability = {
   autoWebviewTimeout: 20000,
   platformName: 'Android',
   deviceName: 'pixel',
-  app: path.resolve(__dirname, 'platforms/android/build/outputs/apk/android-debug.apk'),
+  // app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/armv7/debug/android-armv7-debug.apk'),
+  app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/x86/debug/android-x86-debug.apk'),
   'app-package': 'com.xendbit',
   'app-activity': 'MainActivity',
   autoAcceptAlerts: 'true',
@@ -39,7 +40,7 @@ export let config: Config = {
   baseUrl: '',
   multiCapabilities: [
     androidPixel2XLCapability,
-    iPhoneXCapability
+    // iPhoneXCapability
   ],
   framework: 'jasmine',
   jasmineNodeOpts: {
