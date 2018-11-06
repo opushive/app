@@ -152,10 +152,13 @@ export class ConfirmMnemonicPage {
       this.ls.clear();
       Console.log(this.passphrase)
       var hd = HDNode.fromSeedBuffer(mnemonicToSeed(this.passphrase), Constants.NETWORKS.BTCTEST).derivePath("m/0/0/0");
-
+      Console.log("Got HD NODE: " + hd);
       Constants.registrationData['networkAddress'] = hd.getAddress();
+      Console.log("Got HD Address: ");
       this.ls.setItem('BTCAddress', hd.getAddress());
+      Console.log("Set HD Address Into ls: ");
       this.ls.setItem('mnemonic', this.passphrase);
+      Console.log("Set Passphrase into ls: ");
       Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, 'XND');
       Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, 'NXT');
       Constants.xndWallet(this.ls, this.loading, this.loadingCtrl, this.http, this.toastCtrl, 'ARDR');

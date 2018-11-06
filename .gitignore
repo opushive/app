@@ -13,7 +13,6 @@ www/
 target
 server/XendServer/deploy.sh
 *.apk
-# resources
 *.apk
 rc.txt
 minor_version.txt

@@ -164,7 +164,7 @@ export class HomePage {
     ionViewDidLoad() {
         Console.log('ionViewDidLoad HomePage');
         if (this.ls.getItem("exchangeType") === 'exchange') {
-            this.cryptoSellOrderText = 'Cryto Sell Order';
+            this.cryptoSellOrderText = 'Crypto Sell Order';
             this.fiatSellOrderText = 'Fiat Sell Order'
         } else {
             this.cryptoSellOrderText = 'Exchange Assets';
@@ -214,7 +214,7 @@ export class HomePage {
         }
 
         if (this.ls.getItem("exchangeType") === 'exchange') {
-            this.cryptoSellOrderText = 'Cryto Sell Order';
+            this.cryptoSellOrderText = 'Crypto Sell Order';
             this.fiatSellOrderText = 'Fiat Sell Order'
         } else {
             this.cryptoSellOrderText = 'Exchange Assets';
