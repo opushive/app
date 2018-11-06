@@ -28,6 +28,7 @@
     <platform name="android">
         <preference name="loadUrlTimeoutValue" value="70000" />
         <allow-intent href="market:*" />
+        <hook src="hooks/add-build-extra.js" type="before_build" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />

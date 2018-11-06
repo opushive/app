@@ -4,9 +4,9 @@ import { AlertController } from 'ionic-angular';
 
 
 @Injectable()
-export class MyExceptionHandler implements IonicErrorHandler {
+export class MyExceptionHandler extends IonicErrorHandler {
     constructor(public alertCtrl: AlertController) {
-
+        super();
     }
 
     handleError(error: any) {
@@ -23,6 +23,7 @@ export class MyExceptionHandler implements IonicErrorHandler {
             let alert = this.alertCtrl.create(options);
             alert.present();
         }
+        super.handleError(error);
     }
 
     // humanReadable(errorMessage: string) {
