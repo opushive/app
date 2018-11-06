@@ -5,7 +5,7 @@ build_live.sh
 coverage/
 dist/
 node_modules/
-hooks/
+#hooks/
 platforms/
 plugins/
 www/
