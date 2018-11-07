@@ -13,6 +13,8 @@ resources/ios
 www/
 .idea
 target
+e2e/**/*.js
+e2e/**/*.js.map
 server/XendServer/deploy.sh
 *.apk
 *.apk
