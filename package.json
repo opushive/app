@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "appium": "appium",
-    "appium:chromedriver": "appium --chromedriver-executable e2e/chrome-drivers/chromedriver.exe",
+    "appium:chromedriver": "appium --chromedriver-executable e2e/chrome-drivers/chromedriver-2.9.exe",
     "android": "ionic cordova run android && adb logcat | grep CONSOLE",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build --prod",
@@ -17,6 +17,7 @@
     "test-ci": "karma start ./test-config/karma.conf.js --single-run",
     "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
     "e2e": "tsc --p e2e/protractor.tsconfig.json && protractor e2e/protractor.config.js --verbose",
+    "e2e:cucumber": "tsc --p e2e/protractor.tsconfig.json && protractor e2e/protractor-cucumber.config.js --verbose",
     "browser-e2e": "npm run e2e-update && npm run e2e-test",
     "e2e-test": "protractor ./test-config/protractor.conf.js",
     "e2e-update": "webdriver-manager update --standalone false --gecko false"

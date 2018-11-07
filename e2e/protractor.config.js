@@ -17,12 +17,13 @@ var iPhoneXCapability = {
     platform: 'iOS',
     deviceName: 'iPhone X',
     platformName: 'iOS',
-    name: 'My First Mobile Test',
+    name: 'IOStest',
     automationName: 'XCUITest',
     nativeWebTap: 'true'
 };
 var androidPixel2XLCapability = {
     browserName: '',
+    name: 'Androidtest',
     autoWebview: true,
     autoWebviewTimeout: 20000,
     platformName: 'Android',
@@ -30,10 +31,11 @@ var androidPixel2XLCapability = {
     // app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/armv7/debug/android-armv7-debug.apk'),
     // app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/x86/debug/android-x86-debug.apk'),
     app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/debug/android-debug.apk'),
-    'app-package': 'com.xendbit',
-    'app-activity': 'MainActivity',
+    appPackage: packageName,
+    appActivity: 'MainActivity',
     autoAcceptAlerts: 'true',
     autoGrantPermissions: 'true',
+    chromedriverExecutableDir: path.resolve(__dirname, 'chrome-drivers/'),
     // androidDeviceSocket: packageName + "_devtools_remote",
     // chromeOptions: {
     //   androidDeviceSocket: packageName + "_devtools_remote"
@@ -41,17 +43,28 @@ var androidPixel2XLCapability = {
     newCommandTimeout: 300000
 };
 exports.config = {
-    allScriptsTimeout: 15000,
     specs: testFilePAtterns,
-    baseUrl: '',
-    multiCapabilities: [
-        androidPixel2XLCapability,
-    ],
     framework: 'jasmine',
     jasmineNodeOpts: {
         showColors: true,
         defaultTimeoutInterval: 30000
     },
+    // framework: 'custom',
+    // specs: [
+    //   path.resolve(__dirname,'../features/**/*.feature') // accepts a glob
+    // ],
+    // frameworkPath: require.resolve('protractor-cucumber-framework'),
+    // cucumberOpts: {
+    //   // require step definitions
+    //   require: [
+    //     path.resolve(__dirname,'/definitions/**/*.steps.js') // accepts a glob
+    //   ]
+    // },
+    baseUrl: '',
+    multiCapabilities: [
+        androidPixel2XLCapability,
+    ],
+    allScriptsTimeout: 15000,
     seleniumAddress: serverAddress,
     onPrepare: function () {
         tsNode.register({

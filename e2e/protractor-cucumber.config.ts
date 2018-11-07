@@ -44,23 +44,17 @@ const androidPixel2XLCapability = {
 
 export let config: Config = {
 
-  specs: testFilePAtterns,
-  framework: 'jasmine',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000
+  framework: 'custom',
+  specs: [
+    path.resolve(__dirname,'../features/**/*.feature') // accepts a glob
+  ],
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  cucumberOpts: {
+    // require step definitions
+    require: [
+      path.resolve(__dirname,'/definitions/**/*.steps.ts') // accepts a glob
+    ]
   },
-  // framework: 'custom',
-  // specs: [
-  //   path.resolve(__dirname,'../features/**/*.feature') // accepts a glob
-  // ],
-  // frameworkPath: require.resolve('protractor-cucumber-framework'),
-  // cucumberOpts: {
-  //   // require step definitions
-  //   require: [
-  //     path.resolve(__dirname,'/definitions/**/*.steps.js') // accepts a glob
-  //   ]
-  // },
   baseUrl: '',
   multiCapabilities: [
     androidPixel2XLCapability,
