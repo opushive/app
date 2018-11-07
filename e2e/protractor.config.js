@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var protractor_1 = require("protractor");
 var tsNode = require("ts-node");
 var path = require("path");
 var serverAddress = 'http://localhost:4723/wd/hub';
@@ -27,19 +28,20 @@ var androidPixel2XLCapability = {
     platformName: 'Android',
     deviceName: 'pixel',
     // app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/armv7/debug/android-armv7-debug.apk'),
-    app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/x86/debug/android-x86-debug.apk'),
+    // app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/x86/debug/android-x86-debug.apk'),
+    app: path.resolve(__dirname, '../platforms/android/build/outputs/apk/debug/android-debug.apk'),
     'app-package': 'com.xendbit',
     'app-activity': 'MainActivity',
     autoAcceptAlerts: 'true',
     autoGrantPermissions: 'true',
-    androidDeviceSocket: packageName + "_devtools_remote",
-    chromeOptions: {
-        androidDeviceSocket: packageName + "_devtools_remote"
-    },
+    // androidDeviceSocket: packageName + "_devtools_remote",
+    // chromeOptions: {
+    //   androidDeviceSocket: packageName + "_devtools_remote"
+    // },
     newCommandTimeout: 300000
 };
 exports.config = {
-    allScriptsTimeout: 11000,
+    allScriptsTimeout: 15000,
     specs: testFilePAtterns,
     baseUrl: '',
     multiCapabilities: [
@@ -55,6 +57,7 @@ exports.config = {
         tsNode.register({
             project: 'e2e/tsconfig.e2e.json'
         });
+        protractor_1.browser.waitForAngularEnabled(false);
     }
 };
 //# sourceMappingURL=protractor.config.js.map

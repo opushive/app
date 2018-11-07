@@ -1,4 +1,4 @@
-import {Config} from 'protractor';
+import {Config, browser} from 'protractor';
 import * as tsNode from 'ts-node';
 import * as path from 'path';
 
@@ -41,7 +41,7 @@ const androidPixel2XLCapability = {
 };
 
 export let config: Config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 15000,
   specs: testFilePAtterns,
   baseUrl: '',
   multiCapabilities: [
@@ -58,5 +58,6 @@ export let config: Config = {
     tsNode.register({
       project: 'e2e/tsconfig.e2e.json'
     });
+    browser.waitForAngularEnabled(false)
   }
 };

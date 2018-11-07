@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "appium": "appium",
-    "appium:chromedriver": "appium --chromedriver-executable e2e/chrome-driver/chromedriver.exe",
+    "appium:chromedriver": "appium --chromedriver-executable e2e/chrome-drivers/chromedriver.exe",
     "android": "ionic cordova run android && adb logcat | grep CONSOLE",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build --prod",
@@ -17,7 +17,7 @@
     "test-ci": "karma start ./test-config/karma.conf.js --single-run",
     "test-coverage": "karma start ./test-config/karma.conf.js --coverage",
     "e2e": "tsc --p e2e/protractor.tsconfig.json && protractor e2e/protractor.config.js --verbose",
-    "js-e2e": "npm run e2e-update && npm run e2e-test",
+    "browser-e2e": "npm run e2e-update && npm run e2e-test",
     "e2e-test": "protractor ./test-config/protractor.conf.js",
     "e2e-update": "webdriver-manager update --standalone false --gecko false"
   },
@@ -58,7 +58,6 @@
     "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-camera": "^4.0.3",
-    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
@@ -126,14 +125,7 @@
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "26.+"
       },
-      "com-badrit-base64": {},
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      }
+      "com-badrit-base64": {}
     },
     "platforms": [
       "android"
