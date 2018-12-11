@@ -42,7 +42,7 @@ describe('App', () => {
 
       // registerButton.click();
 
-      const IAcceptBtn: ElementFinder = await element(by.partialButtonText('I Accept'));
+      const IAcceptBtn: ElementFinder = await element(by.id('accept-btn'));
       expect(IAcceptBtn.isPresent()).toBeTruthy("I Agree Button should be Present on Terms page");
       await browser.wait(protractor.ExpectedConditions.elementToBeClickable(IAcceptBtn));
       // const IAcceptBtnLabel: string = await IAcceptBtn.getText();
