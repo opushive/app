@@ -103,6 +103,7 @@ exports.config = {
         browseStack
     ],
     allScriptsTimeout: 15000,
+    resultJsonOutputFile: './Report.json',
     seleniumAddress: serverAddress,
     onPrepare: function () {
         tsNode.register({

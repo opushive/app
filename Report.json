@@ -1,0 +1,48 @@
+[
+  {
+    "description": "App Start Screen should see the register new account button",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+        "stackTrace": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n    at Timeout._onTimeout (C:\\Users\\Valentine\\Code\\xendbit-app\\node_modules\\protractor\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4281:23)\n    at ontimeout (timers.js:460:11)\n    at tryOnTimeout (timers.js:298:5)\n    at Timer.listOnTimeout (timers.js:261:5)"
+      }
+    ],
+    "duration": 10594
+  },
+  {
+    "description": "App Start Screen should be able to accept agreement",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 5259
+  },
+  {
+    "description": "App Start Screen should be able to create advanced wallet",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Expected false to be truthy 'I should see the 'Create Advance Wallet button''.",
+        "stackTrace": "Error: Failed expectation\n    at Object.<anonymous> (C:\\Users\\Valentine\\Code\\xendbit-app\\e2e\\specs\\test.e2e-spec.ts:73:41)\n    at step (C:\\Users\\Valentine\\Code\\xendbit-app\\e2e\\specs\\test.e2e-spec.ts:32:23)\n    at Object.next (C:\\Users\\Valentine\\Code\\xendbit-app\\e2e\\specs\\test.e2e-spec.ts:13:53)\n    at fulfilled (C:\\Users\\Valentine\\Code\\xendbit-app\\e2e\\specs\\test.e2e-spec.ts:4:58)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)"
+      },
+      {
+        "passed": false,
+        "errorMsg": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+        "stackTrace": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n    at Timeout._onTimeout (C:\\Users\\Valentine\\Code\\xendbit-app\\node_modules\\protractor\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4281:23)\n    at ontimeout (timers.js:460:11)\n    at tryOnTimeout (timers.js:298:5)\n    at Timer.listOnTimeout (timers.js:261:5)"
+      },
+      {
+        "passed": false,
+        "errorMsg": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+        "stackTrace": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n    at Timeout._onTimeout (C:\\Users\\Valentine\\Code\\xendbit-app\\node_modules\\protractor\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4281:23)\n    at ontimeout (timers.js:460:11)\n    at tryOnTimeout (timers.js:298:5)\n    at Timer.listOnTimeout (timers.js:261:5)"
+      },
+      {
+        "passed": false,
+        "errorMsg": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+        "stackTrace": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n    at Timeout._onTimeout (C:\\Users\\Valentine\\Code\\xendbit-app\\node_modules\\protractor\\node_modules\\jasmine-core\\lib\\jasmine-core\\jasmine.js:4281:23)\n    at ontimeout (timers.js:460:11)\n    at tryOnTimeout (timers.js:298:5)\n    at Timer.listOnTimeout (timers.js:261:5)"
+      }
+    ],
+    "duration": 50108
+  }
+]
